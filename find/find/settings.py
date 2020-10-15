@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'find.urls'
 
+TEMPLATE_DIRS = (
+    'templates/'
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
