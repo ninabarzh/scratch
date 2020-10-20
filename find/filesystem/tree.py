@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 
 def parse_arguments():
@@ -12,28 +13,30 @@ def dir_path(path):
     else:
         raise argparse.ArgumentTypeError(f"readable_dir:{path} is not a valid path")
 
-def walkabout(path):
-
-    filesystem_list = []
+def createtree(path):
+    path = path.rstrip(os.sep)
+    start = path.count(os.sep)
+        
     for root, dirs, files in os.walk(path):
-        for file in files:
-            path = os.path.join(path, file)
-            filesystem_list.append(path)
-        for dir in dirs:
-            path = os.path.join(path, dir)
-            filesystem_list.append(path)
-
-    print (*filesystem_list, sep = "\n")
-    return filesystem_list
+        current = root.count(os.sep)
+        actual = current - start
+        spacing = (actual) * ' '
+        filesystem_list = [file for file in files]
+        sys.stdout.write(spacing + '-' + os.path.basename(root) + ' ' +
+                         str(filesystem_list) + '\n')
 
 def main():
     parsed_args = parse_arguments()
     print(parsed_args)
 
     if parsed_args.path:
-        walkabout(parsed_args.path)
+        createtree(parsed_args.path)
 
 # Execute
 if __name__ == '__main__':
     main()
+
+
+
+
 
