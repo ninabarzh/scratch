@@ -1,9 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 from django.http import HttpResponse
+
+from filesystem import walk
 
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the filesystem home.")
+    startdir = request.GET.get('startdir')
+    context = None
+    if startdir:
+        context = {'tree': walk(startdir), 'startdir':startdir}
+    return render(request, 'filesystem/home.html', context)
