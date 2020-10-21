@@ -17,7 +17,7 @@ def dir_path(path):
         raise argparse.ArgumentTypeError(f"readable_dir:{path} is not a valid path")
 
 
-def walkabout(path):
+def traverse(path):
     filesystem_list = []
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -35,7 +35,7 @@ def main():
     parsed_args = parse_arguments()
 
     if parsed_args.path:
-        walkabout(parsed_args.path)
+        traverse(parsed_args.path)
 
 
 # Execute
