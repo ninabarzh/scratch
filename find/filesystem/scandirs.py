@@ -1,4 +1,4 @@
-"""Example using walk
+""" Example of using scandir
 Authors: Reinica and Nina"""
 import argparse
 import os
@@ -17,25 +17,23 @@ def dir_path(path):
         raise argparse.ArgumentTypeError(f"readable_dir:{path} is not a valid path")
 
 
-def walkabout(path):
+def traverse(path):
     filesystem_list = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            path = os.path.join(path, file)
-            filesystem_list.append(path)
-        for directory in dirs:
-            path = os.path.join(path, directory)
-            filesystem_list.append(path)
+    if not os.path.exists(path):
+        return
+
+    for f in os.scandir(path):
+        path = os.path.join(path, f.name)
+        filesystem_list.append(path)
 
     print(*filesystem_list, sep="\n")
-    return filesystem_list
 
 
 def main():
     parsed_args = parse_arguments()
 
     if parsed_args.path:
-        walkabout(parsed_args.path)
+        traverse(parsed_args.path)
 
 
 # Execute

@@ -1,4 +1,4 @@
-"""Example using walk
+"""Example using listdir
 Authors: Reinica and Nina"""
 import argparse
 import os
@@ -17,25 +17,18 @@ def dir_path(path):
         raise argparse.ArgumentTypeError(f"readable_dir:{path} is not a valid path")
 
 
-def walkabout(path):
-    filesystem_list = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            path = os.path.join(path, file)
-            filesystem_list.append(path)
-        for directory in dirs:
-            path = os.path.join(path, directory)
-            filesystem_list.append(path)
+def traverse(path):
+    filepaths = [os.path.join(path, f) for f in os.listdir(path)]
+    print(*filepaths, sep="\n")
 
-    print(*filesystem_list, sep="\n")
-    return filesystem_list
+    return filepaths
 
 
 def main():
     parsed_args = parse_arguments()
 
     if parsed_args.path:
-        walkabout(parsed_args.path)
+        traverse(parsed_args.path)
 
 
 # Execute
