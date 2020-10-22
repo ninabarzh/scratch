@@ -18,17 +18,21 @@ def dir_path(path):
 
 
 def traverse(path):
-    filesystem_list = []
+    filesystem_list_files = []
+    filesystem_list_dirs = []
     for root, dirs, files in os.walk(path):
         for file in files:
             path = os.path.join(path, file)
-            filesystem_list.append(path)
+            filesystem_list_files.append(path)
         for directory in dirs:
             path = os.path.join(path, directory)
-            filesystem_list.append(path)
+            filesystem_list_dirs.append(path)
 
-    print(*filesystem_list, sep="\n")
-    return filesystem_list
+    print('Files:')
+    print(*filesystem_list_files, sep="\n")
+    print('Directories:')
+    print(*filesystem_list_dirs, sep="\n")
+    return filesystem_list_files, filesystem_list_dirs
 
 
 def main():
