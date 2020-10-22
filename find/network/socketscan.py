@@ -11,8 +11,7 @@ import re
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Process command line arguments.')
-    parser.add_argument("-p", "--host", help="host to be scanned",
-                        type=is_valid_hostname, default='localhost')
+    parser.add_argument("-p", "--host", help="host to be scanned", type=is_valid_hostname, default='localhost')
     return parser.parse_args()
 
 
