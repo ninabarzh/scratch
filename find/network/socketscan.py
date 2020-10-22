@@ -21,8 +21,8 @@ def is_valid_hostname(host):
     #   consists only of allowed characters
     #   doesn't begin or end with a hyphen
 
-    if host.endswith('.'):  # A single trailing dot is legal
-        host = host[:-1]  # Strip a dot from the right
+    if host.endswith('.'):                      # A single trailing dot is legal
+        host = host[:-1]                        # Strip a dot from the right
     if len(host) < 1 or len(host) > 253:
         raise argparse.ArgumentTypeError(f"{host} is not a valid hostname")
 
