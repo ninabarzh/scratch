@@ -16,7 +16,7 @@ Call this script with sudo or as superuser."""
 import argparse
 import time
 import ipaddress                # https://docs.python.org/3/library/ipaddress.html
-import os
+import subprocess
 import platform
 import socket
 
@@ -73,9 +73,22 @@ def sweep(ip):
 
     for ip in range(1, 255):
         address = base_net + str(ip)
-        arguments = cmd + address
-        response = os.popen(arguments)
-        if response == 0:
+        sp = subprocess.Popen(cmd + address,
+                              shell=True,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE)
+
+        # Store the return code in rc variable
+        rc = sp.wait()
+
+        # Separate the output and error by communicating with sp variable.
+        out, err = sp.communicate()
+
+        # print('Return Code:', rc, '\n')
+        # print('output is: \n', out)
+        # print('error is: \n', err)
+
+        if out == 0:
             print(address + "--> Live")
         else:
             print(address + "--> No response")
