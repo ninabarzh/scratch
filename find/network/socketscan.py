@@ -4,7 +4,7 @@ Struggled with: https://bugs.python.org/issue32958
 Port scanning is like going to someone’s house and checking their doors and windows.
 If not by request of owners, use port scanners like this only on localhost or own website."""
 import argparse
-import socket
+import socket               # https://docs.python.org/3/library/socket.html
 import time
 import re
 
