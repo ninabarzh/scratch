@@ -63,6 +63,7 @@ def makebase(ip):
 
 def sweep(ip):
     # Send ICMP ECHO request and verify response status
+    # Needs to be changed to using subprocess https://docs.python.org/3/library/subprocess.html
 
     cmd = setoscommand()
     base_net = makebase(ip)
