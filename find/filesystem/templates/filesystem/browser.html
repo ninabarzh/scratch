@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Filesystem Browser page</title>
+  </head>
+
+<body>
+
+  <!-- filesystem/templates/filesystem/browser.html -->
+  
+  <h1>Filesystem Browser</h1>
+
+  {% if fslist %}
+    <ul>
+      {% for f in fslist %}
+        <li>
+          {{ fs.get_absolute_url }}, {{ f.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No files are available.</p>
+  {% endif %}
+
+  </body>
+</html>
+
