@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def home(request):
     return HttpResponse("Hello, world. You're at the web home.")
+
+def browser(request):
+    return HttpResponse("Hello, world. You're at the web browser home.")

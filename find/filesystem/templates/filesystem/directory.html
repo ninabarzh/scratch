@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Filesystem Browser directory page</title>
+  </head>
+
+<body>
+
+  <!-- filesystem/templates/filesystem/directory.html -->
+
+
+  {% if dlist or fslist %}
+
+      <h1>Files in //{{ fs.name }}/{{ path }}</h1>
+      <ul>
+        {% for d in dlist %}
+            <li>
+                <a href="{{ fs.get_absolute_url }}{{ path }}{{ d }}/" >{{ d }}</a>
+            </li>
+        {% endfor %}
+        {% for f in flist %}
+            <li>
+                <a href="{{ fs.get_absolute_url }}{{ path }}{{ f.name }}" >{{ f.name }}</a> ({{ f.type }})
+            </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  </body>
+</html>
